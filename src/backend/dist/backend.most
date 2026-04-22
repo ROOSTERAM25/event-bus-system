@@ -1,0 +1,52 @@
+// Version: 1.0.0
+type DeliveryLog__819268178 =
+  {
+    deliveredAt : Timestamp__301639476;
+    deliveryStatus : Text;
+    eventId : Id__389469852;
+    id : Id__389469852;
+    subscriberId : Id__389469852;
+    subscriberName : Text
+  };
+type Event__651998990 =
+  {
+    eventType : Text;
+    id : Id__389469852;
+    payload : Text;
+    publisherName : Text;
+    timestamp : Timestamp__301639476
+  };
+type Id__389469852 = Nat;
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Subscriber__1016320348 =
+  {
+    createdAt : Timestamp__301639476;
+    id : Id__389469852;
+    name : Text;
+    subscribedEventType : Text
+  };
+type Timestamp__301639476 = Int;
+actor {
+  stable deliveryLogs :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?DeliveryLog__819268178]];
+      var elementIndex : Nat__490723111
+    };
+  stable events :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Event__651998990]];
+      var elementIndex : Nat__490723111
+    };
+  stable var nextEventId : {var value : Nat};
+  stable var nextLogId : {var value : Nat};
+  stable var nextSubId : {var value : Nat};
+  stable subscribers :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Subscriber__1016320348]];
+      var elementIndex : Nat__490723111
+    }
+};

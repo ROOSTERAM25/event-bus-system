@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "GeistMono", monospace;
+    --font-body: "DMSans", sans-serif;
+    --font-mono: "GeistMono", monospace;
+    --radius: 0.25rem;
+
+    --background: 0.95 0 0;
+    --foreground: 0.12 0 0;
+    --card: 0.98 0 0;
+    --card-foreground: 0.12 0 0;
+    --popover: 0.99 0 0;
+    --popover-foreground: 0.12 0 0;
+
+    --primary: 0.58 0.14 257;
+    --primary-foreground: 0.98 0 0;
+
+    --secondary: 0.9 0.05 217;
+    --secondary-foreground: 0.15 0 0;
+    --muted: 0.88 0.02 0;
+    --muted-foreground: 0.5 0 0;
+
+    --accent: 0.72 0.19 120;
+    --accent-foreground: 0.98 0 0;
+
+    --destructive: 0.53 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.92 0.01 0;
+    --input: 0.96 0.01 0;
+    --ring: 0.58 0.14 257;
+
+    --chart-1: 0.72 0.19 120;
+    --chart-2: 0.58 0.14 257;
+    --chart-3: 0.63 0.16 42;
+    --chart-4: 0.53 0.22 25;
+    --chart-5: 0.65 0.12 200;
+
+    --sidebar: 0.98 0 0;
+    --sidebar-foreground: 0.15 0 0;
+    --sidebar-primary: 0.58 0.14 257;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.72 0.19 120;
+    --sidebar-accent-foreground: 0.12 0 0;
+    --sidebar-border: 0.92 0.01 0;
+    --sidebar-ring: 0.58 0.14 257;
+  }
+
+  .dark {
+    --background: 0.11 0 0;
+    --foreground: 0.93 0 0;
+    --card: 0.13 0 0;
+    --card-foreground: 0.93 0 0;
+    --popover: 0.15 0 0;
+    --popover-foreground: 0.93 0 0;
+
+    --primary: 0.62 0.18 257;
+    --primary-foreground: 0.11 0 0;
+
+    --secondary: 0.18 0.04 240;
+    --secondary-foreground: 0.88 0 0;
+    --muted: 0.16 0.02 0;
+    --muted-foreground: 0.52 0 0;
+
+    --accent: 0.75 0.22 120;
+    --accent-foreground: 0.11 0 0;
+
+    --destructive: 0.62 0.25 27;
+    --destructive-foreground: 0.11 0 0;
+
+    --border: 0.18 0.02 0;
+    --input: 0.16 0.02 0;
+    --ring: 0.62 0.18 257;
+
+    --chart-1: 0.75 0.22 120;
+    --chart-2: 0.62 0.18 257;
+    --chart-3: 0.7 0.18 42;
+    --chart-4: 0.62 0.25 27;
+    --chart-5: 0.68 0.14 200;
+
+    --sidebar: 0.13 0 0;
+    --sidebar-foreground: 0.93 0 0;
+    --sidebar-primary: 0.62 0.18 257;
+    --sidebar-primary-foreground: 0.11 0 0;
+    --sidebar-accent: 0.75 0.22 120;
+    --sidebar-accent-foreground: 0.13 0 0;
+    --sidebar-border: 0.18 0.02 0;
+    --sidebar-ring: 0.62 0.18 257;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@font-face {
+  font-family: "GeistMono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DMSans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .status-badge-success {
+    @apply inline-flex items-center gap-2 px-2.5 py-1 rounded-sm bg-accent/10 text-accent font-mono text-xs font-semibold tracking-tight;
+  }
+
+  .status-badge-failed {
+    @apply inline-flex items-center gap-2 px-2.5 py-1 rounded-sm bg-destructive/10 text-destructive font-mono text-xs font-semibold tracking-tight;
+  }
+
+  .status-badge-pending {
+    @apply inline-flex items-center gap-2 px-2.5 py-1 rounded-sm bg-muted text-muted-foreground font-mono text-xs font-semibold tracking-tight;
+  }
+
+  /* hover:bg-card/80 is NOT valid in @apply — use a nested CSS rule instead */
+  .event-card {
+    @apply flex flex-col gap-3 p-4 rounded-sm border border-border bg-card transition-smooth;
+  }
+  .event-card:hover {
+    background-color: oklch(var(--card) / 0.85);
+  }
+
+  /* opacity modifiers (/70) are NOT valid in @apply — use plain CSS color instead */
+  .event-header-mono {
+    @apply font-display text-xs font-semibold uppercase tracking-widest;
+    color: oklch(var(--foreground) / 0.7);
+  }
+
+  .button-publish {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-sm bg-primary text-primary-foreground font-mono text-sm font-semibold transition-smooth hover:bg-primary/90 active:scale-95;
+  }
+
+  .button-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-sm bg-secondary/10 text-secondary-foreground font-mono text-sm font-semibold transition-smooth hover:bg-secondary/20;
+  }
+}

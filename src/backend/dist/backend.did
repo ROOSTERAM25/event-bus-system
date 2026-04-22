@@ -1,0 +1,35 @@
+type Timestamp = int;
+type Subscriber = 
+ record {
+   createdAt: Timestamp;
+   id: Id;
+   name: text;
+   subscribedEventType: text;
+ };
+type Id = nat;
+type Event = 
+ record {
+   eventType: text;
+   id: Id;
+   payload: text;
+   publisherName: text;
+   timestamp: Timestamp;
+ };
+type DeliveryLog = 
+ record {
+   deliveredAt: Timestamp;
+   deliveryStatus: text;
+   eventId: Id;
+   id: Id;
+   subscriberId: Id;
+   subscriberName: text;
+ };
+service : {
+  getDeliveryLogs: () -> (vec DeliveryLog) query;
+  getEvents: () -> (vec Event) query;
+  getSubscribers: () -> (vec Subscriber) query;
+  publishEvent: (eventType: text, payload: text, publisherName: text) ->
+   (Event, vec DeliveryLog);
+  subscribe: (name: text, eventType: text) -> (Subscriber);
+  unsubscribe: (subscriberId: Id) -> (bool);
+}

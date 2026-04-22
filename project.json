@@ -1,0 +1,22 @@
+{
+  "overview": "A full-stack Event Bus System demonstrating publish-subscribe architecture on the Internet Computer. Users can publish typed events, subscribe to specific event types, and view real-time delivery logs showing which subscribers received each event.",
+  "features": [
+    "Publish events with type, payload, and publisher name",
+    "Subscribe components to specific event types",
+    "Event dispatch algorithm routes messages to matching subscribers only",
+    "Active subscribers list with unsubscribe functionality",
+    "Event history stored in persistent canister state",
+    "Delivery logs showing status per subscriber per event",
+    "Four-page React UI: Home, Publisher, Subscriber, Event Logs"
+  ],
+  "category": "productivity",
+  "tags": [
+    "event-bus",
+    "publish-subscribe",
+    "messaging",
+    "real-time",
+    "education",
+    "college-project"
+  ],
+  "last_updated": "2026-04-22T16:16:48.436Z"
+}
